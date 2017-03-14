@@ -17,6 +17,8 @@
 		4196F2DD1E650ECA009916E4 /* ImageFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4196F2DC1E650ECA009916E4 /* ImageFeed.swift */; };
 		4196F2E31E6514EE009916E4 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4196F2E21E6514EE009916E4 /* ImagePickerController.swift */; };
 		4196F2ED1E6609B0009916E4 /* PostNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4196F2EC1E6609B0009916E4 /* PostNavigationController.swift */; };
+		49852E381E779F0D003E0D23 /* ImageFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49852E371E779F0D003E0D23 /* ImageFeedViewController.swift */; };
+		49852E3A1E779FCE003E0D23 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49852E391E779FCE003E0D23 /* FeedCell.swift */; };
 		498593FF1E76157100359AD8 /* SnapCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498593FE1E76157100359AD8 /* SnapCategoryCell.swift */; };
 		498594051E76190800359AD8 /* SnapTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498594041E76190800359AD8 /* SnapTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,8 @@
 		4196F2DC1E650ECA009916E4 /* ImageFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeed.swift; sourceTree = "<group>"; };
 		4196F2E21E6514EE009916E4 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		4196F2EC1E6609B0009916E4 /* PostNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostNavigationController.swift; sourceTree = "<group>"; };
+		49852E371E779F0D003E0D23 /* ImageFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeedViewController.swift; sourceTree = "<group>"; };
+		49852E391E779FCE003E0D23 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		498593FE1E76157100359AD8 /* SnapCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapCategoryCell.swift; sourceTree = "<group>"; };
 		498594041E76190800359AD8 /* SnapTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +75,7 @@
 			children = (
 				417986C81E664AE40050E1DF /* imageCollectionVieCell.swift */,
 				498593FE1E76157100359AD8 /* SnapCategoryCell.swift */,
+				49852E391E779FCE003E0D23 /* FeedCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -83,6 +88,7 @@
 				417986CE1E6657650050E1DF /* Cells */,
 				4196F2E21E6514EE009916E4 /* ImagePickerController.swift */,
 				498594041E76190800359AD8 /* SnapTableViewController.swift */,
+				49852E371E779F0D003E0D23 /* ImageFeedViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -193,8 +199,10 @@
 				498593FF1E76157100359AD8 /* SnapCategoryCell.swift in Sources */,
 				4196F2E31E6514EE009916E4 /* ImagePickerController.swift in Sources */,
 				417986C51E6632C40050E1DF /* TabBarController.swift in Sources */,
+				49852E3A1E779FCE003E0D23 /* FeedCell.swift in Sources */,
 				417986C91E664AE40050E1DF /* imageCollectionVieCell.swift in Sources */,
 				4196F2DD1E650ECA009916E4 /* ImageFeed.swift in Sources */,
+				49852E381E779F0D003E0D23 /* ImageFeedViewController.swift in Sources */,
 				4196F2CB1E6509E8009916E4 /* AppDelegate.swift in Sources */,
 				4196F2ED1E6609B0009916E4 /* PostNavigationController.swift in Sources */,
 				498594051E76190800359AD8 /* SnapTableViewController.swift in Sources */,
