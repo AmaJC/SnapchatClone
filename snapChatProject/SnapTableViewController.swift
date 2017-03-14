@@ -16,6 +16,9 @@ class SnapTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var snapButton: UIButton!
     
+    var snapImage: UIImage?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -44,13 +47,17 @@ class SnapTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func sendSnap(_ sender: UIButton) {
         let alert = UIAlertController(title: "Oh Snap!", message: "Your snap was sent succesfully. Would you like to send another?", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.cancel, handler: {action in self.tempFunc()}))
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {action in self.tempFunc()}))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.cancel, handler: {action in self.performSegue(withIdentifier: "backToImagePicker", sender: self)}))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {action in self.performSegue(withIdentifier: "backToImagePicker", sender: self)}))
+        if let feed = selectedCategory.text {
+            let snappy: Snap = Snap(name: "JC Dy", snapImage: snapImage!)
+            threads[feed]!.append(snappy)
+        }
         self.present(alert, animated: true, completion: nil)
     }
     
-    func tempFunc() {
-        
+    func sendSnap() {
+        performSegue(withIdentifier: "backToImagePicker", sender: self)
     }
     
     /*

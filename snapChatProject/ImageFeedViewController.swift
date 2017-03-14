@@ -9,7 +9,7 @@
 import UIKit
 
 class ImageFeedViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var feedTableView: UITableView!
     
     override func viewDidLoad() {
@@ -28,13 +28,35 @@ class ImageFeedViewController: UIViewController,UITableViewDelegate, UITableView
         return threadNames.count
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return threadNames.count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell") as! SnapCategoryCell
-        cell.snapLabel.text = threadNames[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell") as! FeedCell
+        
+        let feedName = threadNames[indexPath.section]
+        let snap: Snap = threads[threadNames[indexPath.section]]![indexPath.item]
+        addSnap(snap: snap, threadName: feedName)
+        
+        if snap.seen {
+            cell.seenOrNotImage.image = #imageLiteral(resourceName: "read")
+        } else {
+            cell.seenOrNotImage.image = #imageLiteral(resourceName: "unread")
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let feedName = threadNames[indexPath.section]
+        let snap: Snap = threads[feedName]![indexPath.item]
+        snap.seen = true
+        performSegue(withIdentifier: "feedToFullscreen", sender: self)
+    }
+        
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return threadNames[section]
     }
 
     /*

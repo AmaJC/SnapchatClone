@@ -10,7 +10,12 @@ import UIKit
 
 class FeedCell: UITableViewCell {
 
-    @IBOutlet weak var feedLabel: UILabel!
+    
+    @IBOutlet weak var seenOrNotImage: UIImageView!
+    
+    @IBOutlet weak var sender: UILabel!
+    
+    @IBOutlet weak var timestamp: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
