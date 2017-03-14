@@ -11,11 +11,14 @@ import UIKit
 class ImageFeedViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var feedTableView: UITableView!
+    var snapToFullscreen: Snap?
+    var fullscreenImage = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         feedTableView.delegate = self
         feedTableView.dataSource = self
+        self.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view.
     }
 
@@ -25,7 +28,8 @@ class ImageFeedViewController: UIViewController,UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return threadNames.count
+        let feed = threadNames[section]
+        return threads[feed]!.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,13 +40,17 @@ class ImageFeedViewController: UIViewController,UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell") as! FeedCell
         
         let feedName = threadNames[indexPath.section]
-        let snap: Snap = threads[threadNames[indexPath.section]]![indexPath.item]
-        addSnap(snap: snap, threadName: feedName)
-        
-        if snap.seen {
-            cell.seenOrNotImage.image = #imageLiteral(resourceName: "read")
-        } else {
-            cell.seenOrNotImage.image = #imageLiteral(resourceName: "unread")
+        let snapList = threads[feedName]!
+        if indexPath.row < snapList.count {
+            let snap: Snap = snapList[indexPath.row]
+            
+            let seconds = -snap.datePosted.timeIntervalSinceNow
+            cell.timestamp.text = String(Int(round(seconds)) / 60) + " minutes ago"
+            if snap.seen {
+                cell.seenOrNotImage.image = #imageLiteral(resourceName: "read")
+            } else {
+                cell.seenOrNotImage.image = #imageLiteral(resourceName: "unread")
+            }
         }
         
         return cell
@@ -50,9 +58,22 @@ class ImageFeedViewController: UIViewController,UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let feedName = threadNames[indexPath.section]
-        let snap: Snap = threads[feedName]![indexPath.item]
-        snap.seen = true
-        performSegue(withIdentifier: "feedToFullscreen", sender: self)
+        let snapList = threads[feedName]!
+        if indexPath.row < snapList.count {
+            let snap: Snap = snapList[indexPath.row]
+            if !snap.seen {
+                snapToFullscreen = snap
+                fullscreenImage = snap.snapImage
+                performSegue(withIdentifier: "feedToFullscreen", sender: self)
+            }
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dest = segue.destination as! FullScreenViewController
+        dest.sentSnap = snapToFullscreen!
+        dest.img = fullscreenImage
     }
         
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

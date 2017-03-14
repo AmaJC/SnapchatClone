@@ -16,10 +16,10 @@ class Snap {
     let snapImage: UIImage!
     var seen: Bool
     
-    init(name: String, snapImage: UIImage) {
+    init(name: String, pic: UIImage) {
         self.whoPosted = name
         self.datePosted = Date.init()
-        self.snapImage = snapImage
+        self.snapImage = pic
         self.seen = false
     }
     

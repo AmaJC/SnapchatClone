@@ -46,13 +46,28 @@ class SnapTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func sendSnap(_ sender: UIButton) {
+        if let feed = selectedCategory.text {
+            if feed == "None" {
+                failAlert()
+                return
+            }
+            let snappy: Snap = Snap(name: "JC Dy", pic: snapImage!)
+            addSnap(snap: snappy, threadName: feed)
+        }
+        successAlert()
+    }
+    
+    func successAlert() {
         let alert = UIAlertController(title: "Oh Snap!", message: "Your snap was sent succesfully. Would you like to send another?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.cancel, handler: {action in self.performSegue(withIdentifier: "backToImagePicker", sender: self)}))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {action in self.performSegue(withIdentifier: "backToImagePicker", sender: self)}))
-        if let feed = selectedCategory.text {
-            let snappy: Snap = Snap(name: "JC Dy", snapImage: snapImage!)
-            threads[feed]!.append(snappy)
-        }
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func failAlert() {
+        let alert = UIAlertController(title: "Oh Snap!", message: "You must choose a feed before sending a snap! Try again?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {action in self.performSegue(withIdentifier: "backToImagePicker", sender: self)}))
         self.present(alert, animated: true, completion: nil)
     }
     

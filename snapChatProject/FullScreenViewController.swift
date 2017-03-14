@@ -11,11 +11,29 @@ import UIKit
 class FullScreenViewController: UIViewController {
 
     @IBOutlet weak var fullscreenSnap: UIImageView!
+    var sentSnap: Snap?
+    var img: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.setHidesBackButton(true, animated:true);
+        if let snap = sentSnap {
+            fullscreenSnap.image = snap.snapImage
+            snap.seen = true
+        }
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        fullscreenSnap.isUserInteractionEnabled = true
+        fullscreenSnap.addGestureRecognizer(tapGestureRecognizer)
         // Do any additional setup after loading the view.
+    }
+    
+    func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let _ = tapGestureRecognizer.view as! UIImageView
+        
+        performSegue(withIdentifier: "fullscreenToFeed", sender: self)
+        // Your action
     }
 
     override func didReceiveMemoryWarning() {
