@@ -59,21 +59,21 @@ class SnapTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func successAlert() {
         let alert = UIAlertController(title: "Oh Snap!", message: "Your snap was sent succesfully. Would you like to send another?", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.cancel, handler: {action in self.performSegue(withIdentifier: "backToImagePicker", sender: self)}))
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {action in self.performSegue(withIdentifier: "backToImagePicker", sender: self)}))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.cancel, handler: {action in switch action.style{ default: self.navigationController?.popViewController(animated: true)}}))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {action in switch action.style{ default: self.navigationController?.popViewController(animated: true)}}))
         self.present(alert, animated: true, completion: nil)
     }
     
     func failAlert() {
         let alert = UIAlertController(title: "Oh Snap!", message: "You must choose a feed before sending a snap! Try again?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {action in self.performSegue(withIdentifier: "backToImagePicker", sender: self)}))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: {action in switch action.style{ default: self.navigationController?.popViewController(animated: true)}}))
         self.present(alert, animated: true, completion: nil)
     }
     
-    func sendSnap() {
-        performSegue(withIdentifier: "backToImagePicker", sender: self)
-    }
+//    func sendSnap() {
+//        performSegue(withIdentifier: "backToImagePicker", sender: self)
+//    }
     
     /*
     // MARK: - Navigation

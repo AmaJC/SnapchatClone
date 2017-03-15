@@ -21,6 +21,11 @@ class ImageFeedViewController: UIViewController,UITableViewDelegate, UITableView
         self.navigationItem.setHidesBackButton(true, animated:true);
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        feedTableView.reloadData()
+        print(threads)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

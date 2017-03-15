@@ -19,8 +19,10 @@ class FullScreenViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated:true);
         if let snap = sentSnap {
             fullscreenSnap.image = snap.snapImage
+            print(snap.snapImage)
             snap.seen = true
         }
+        
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         fullscreenSnap.isUserInteractionEnabled = true
